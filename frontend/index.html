@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexusBridge — Integration & Copilot Workspace</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <span><strong>NexusBridge</strong> <em>workspace</em></span>
+    </div>
+    <nav class="tabs">
+      <button class="tab active" data-tab="dashboard">Dashboard</button>
+      <button class="tab" data-tab="connectors">Connectors</button>
+      <button class="tab" data-tab="mappings">Mappings</button>
+      <button class="tab" data-tab="jobs">Jobs</button>
+      <button class="tab" data-tab="webhooks">Webhooks</button>
+    </nav>
+    <span id="health" class="health">…</span>
+  </header>
+
+  <main id="view" class="view">
+    <div class="pane" id="pane-dashboard">
+      <h1>Dashboard</h1>
+      <div id="dashboard-stats" class="stats"></div>
+      <section>
+        <h2>Job health</h2>
+        <table id="dashboard-jobs"><thead><tr>
+          <th>Job</th><th>Status</th><th>Runs</th><th>Success</th>
+          <th>Failure</th><th>Error rate</th><th>Last run</th>
+        </tr></thead><tbody></tbody></table>
+      </section>
+      <section>
+        <h2>Recent runs</h2>
+        <table id="dashboard-runs"><thead><tr>
+          <th>#</th><th>Job</th><th>Status</th><th>In</th><th>Out</th>
+          <th>Error</th><th>Started</th>
+        </tr></thead><tbody></tbody></table>
+      </section>
+    </div>
+
+    <div class="pane hidden" id="pane-connectors">
+      <h1>Connectors</h1>
+      <table id="connectors"><thead><tr>
+        <th>ID</th><th>Name</th><th>Type</th><th>Base URL</th>
+        <th>Auth</th><th>Notes</th><th>Created</th>
+      </tr></thead><tbody></tbody></table>
+    </div>
+
+    <div class="pane hidden" id="pane-mappings">
+      <h1>Field Mappings</h1>
+      <table id="mappings"><thead><tr>
+        <th>ID</th><th>Name</th><th>Source → Target</th><th>Fields</th><th>Notes</th>
+      </tr></thead><tbody></tbody></table>
+      <p class="hint">Mappings translate source fields to target fields with
+        transforms (<code>direct</code>, <code>upper</code>, <code>lower</code>,
+        <code>concat</code>, <code>const</code>).</p>
+    </div>
+
+    <div class="pane hidden" id="pane-jobs">
+      <h1>Sync Jobs</h1>
+      <table id="jobs"><thead><tr>
+        <th>ID</th><th>Name</th><th>Source</th><th>Target</th><th>Mapping</th>
+        <th>Schedule</th><th>Status</th><th></th>
+      </tr></thead><tbody></tbody></table>
+      <p class="hint small">Use <strong>Run</strong> to trigger a job's
+        deterministic simulation. The transformed output is written to the run
+        log (governance/audit trail).</p>
+      <pre id="run-output" class="run-output hidden"></pre>
+    </div>
+
+    <div class="pane hidden" id="pane-webhooks">
+      <h1>Webhooks</h1>
+      <table id="webhooks"><thead><tr>
+        <th>ID</th><th>Path</th><th>Method</th><th>Job</th><th>Active</th>
+      </tr></thead><tbody></tbody></table>
+      <p class="hint small">POST to <code>/api/webhooks/hooks/&lt;path&gt;</code>
+        to trigger the bound job — the locally simulated equivalent of an
+        external system firing a write-back flow.</p>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

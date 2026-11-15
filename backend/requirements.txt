@@ -1,0 +1,8 @@
+# NexusBridge backend runtime dependencies.
+# Install with:  python -m pip install -r requirements.txt
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+
+# Test dependencies (optional, isolated in requirements-dev.txt).
+httpx>=0.27
