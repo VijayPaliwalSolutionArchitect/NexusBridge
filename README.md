@@ -153,6 +153,7 @@ NexusBridge/
 - [Deployment](docs/DEPLOYMENT.md)
 - [Environment configuration](docs/env-config.md)
 - [Playbook crosswalk](docs/PLAYBOOK-CROSSWALK.md)
+- [Future expansion](docs/FUTURE-EXPANSION.md)
 
 ---
 
